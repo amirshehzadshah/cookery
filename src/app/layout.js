@@ -5,7 +5,7 @@ import Base from "./common/Base";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Breathe Well",
+  title: "Cookery",
   description: "develop by Amir Shehzad Shah",
 };
 
