@@ -13,7 +13,7 @@ const Home = () => {
             <div
               className="absolute inset-0 h-[85vh] bg-cover bg-center"
               style={{
-                backgroundImage: `url(${item.img.src})`,
+                backgroundImage: `url(${item.img})`,
                 filter: 'blur(3px)',
               }}
             ></div>
