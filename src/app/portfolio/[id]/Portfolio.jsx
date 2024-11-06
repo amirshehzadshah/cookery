@@ -10,6 +10,7 @@ const Portfolio = () => {
   const router = useParams();
   const { id } = router;
   const portfolioItem = portfolio.find((item) => item.id === parseInt(id));
+  console.log("🕵️‍♂️ > file: Portfolio.jsx:13 > Portfolio > portfolioItem:", portfolioItem);
 
   if (!portfolioItem) return <p>Loading...</p>;
 
@@ -21,7 +22,7 @@ const Portfolio = () => {
         style={{ backgroundImage: `url(${portfolioItem.topBannerImg})` }}
       >
         <div className='bg-black/5 backdrop-blur-sm max-w-4xl w-full rounded-lg pb-5 shadow-lg border border-white/20 mx-auto flex flex-col items-center'>
-          <Image src={portfolioItem.logo} alt={`${portfolioItem.title} Logo`} width={150} height={150} />
+          <Image src={portfolioItem.logo} alt={`${portfolioItem.title} Logo`} width={150} height={150}/>
           <h1 className="text-3xl font-bold text-center">{portfolioItem.topBanner}</h1>
         </div>
       </section>
@@ -40,18 +41,19 @@ const Portfolio = () => {
         <p className="text-lg">{portfolioItem.whatWeDo}</p>
       </section>
 
-      <section className="max-w-6xl mx-auto py-8 px-4 grid grid-cols-2 sm:grid-cols-3 gap-4">
-        {portfolioItem.imgs.map((img, index) => (
-          <Image
-            key={index}
-            src={img}
-            alt={`Portfolio Image ${index + 1}`}
-            width={300}
-            height={200}
-            className="size-full rounded-lg shadow-md"
-          />
-        ))}
-      </section>
+      <section className="max-w-6xl mx-auto py-8 px-4 grid grid-cols-2 sm:grid-cols-3 gap-4"> 
+  {portfolioItem.imgs.map((img, index) => (
+    <div key={index} className="relative w-full h-0 pb-[66.66%] overflow-hidden rounded-lg shadow-md">
+      <Image
+        src={img}
+        alt={`Portfolio Image ${index + 1}`}
+        fill
+        className="object-cover object-center rounded-lg"
+      />
+    </div>
+  ))}
+</section>
+
 
       <section
         className="w-full h-64 flex items-center justify-center bg-cover bg-center text-white text-center py-8"
