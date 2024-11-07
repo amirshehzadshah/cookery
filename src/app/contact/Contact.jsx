@@ -1,10 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const Contact = () => {
+
+  const [isActive, setIsActive] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -23,9 +25,13 @@ const Contact = () => {
         .required('Email is required'),
       message: Yup.string().required('Message is required'),
     }),
-    onSubmit: (values, {resetForm}) => {
+    onSubmit: (values, { resetForm }) => {
       console.log('Form submitted:', values);
-      resetForm();
+      setIsActive(true);
+      setTimeout(() => {
+        resetForm();
+        setIsActive(false);
+      }, 5000);
     },
   });
 
@@ -43,7 +49,7 @@ const Contact = () => {
 
       <section className="max-w-4xl mx-auto my-8 py-8 px-16 rounded-lg bg-white shadow-lg flex flex-col items-center space-y-6">
         <h2 className="text-2xl font-semibold text-center text-black mb-6">Get In Touch</h2>
-        <form onSubmit={formik.handleSubmit} className="w-full space-y-4">
+        <form onSubmit={formik.handleSubmit} className="w-full flex flex-col space-y-4">
           <div>
             <input
               type="text"
@@ -88,9 +94,28 @@ const Contact = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-black text-white font-semibold py-2 rounded-md hover:bg-gray-800"
+            className={`relative flex self-center px-4 py-2 bg-gray-800 text-white text-xl font-semibold rounded-lg shadow-lg transition-all duration-1000 overflow-hidden ${isActive ? 'bg-green-500' : ''}`}
           >
-            Send
+            <p
+              className={`transition-all duration-1000 ${isActive ? 'mr-32' : ''}`}
+            >
+              {isActive ? 'Thanks' : 'Submit'}
+            </p>
+            <div
+              className={`absolute top-0 right-5 size- bg-transparent rounded-full shadow-md flex items-center justify-center transition-all duration-1000 ${isActive ? 'opacity-100 right-0' : 'opacity-0'}`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 50 50"
+                className="w-10 h-10"
+              >
+                <path
+                  fill="transparent"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  className={`stroke-white stroke-3 transition-all duration-1000 ${isActive ? 'stroke-dashoffset-0' : 'stroke-dashoffset-[34px] stroke-dasharray-[34px]'}`}
+                />
+              </svg>
+            </div>
           </button>
         </form>
       </section>
