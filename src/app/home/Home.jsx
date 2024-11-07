@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React from 'react';
 
 const Home = () => {
-  console.log(brands)
   return (
     <div className="flex justify-center w-full">
       <div className="flex max-sm:flex-col items-center justify-between w-full p-4">

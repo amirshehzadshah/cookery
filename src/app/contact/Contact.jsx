@@ -26,7 +26,7 @@ const Contact = () => {
       message: Yup.string().required('Message is required'),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log('Form submitted:', values);
+      // console.log('Form submitted:', values);
       setIsActive(true);
       setTimeout(() => {
         resetForm();
@@ -96,23 +96,19 @@ const Contact = () => {
             type="submit"
             className={`relative flex self-center px-4 py-2 bg-gray-800 text-white text-xl font-semibold rounded-lg shadow-lg transition-all duration-1000 overflow-hidden ${isActive ? 'bg-green-500' : ''}`}
           >
-            <p
-              className={`transition-all duration-1000 ${isActive ? 'mr-32' : ''}`}
-            >
+            <p className={`transition-all duration-1000 ${isActive ? 'mr-32' : ''}`}>
               {isActive ? 'Thanks' : 'Submit'}
             </p>
-            <div
-              className={`absolute top-0 right-5 size- bg-transparent rounded-full shadow-md flex items-center justify-center transition-all duration-1000 ${isActive ? 'opacity-100 right-0' : 'opacity-0'}`}
-            >
+            <div className={`contactSVG absolute top-0 right-5 bg-transparent rounded-full shadow-lg flex items-center justify-center ${isActive ? 'opacity-100 right-0 transition-all duration-1000' : 'opacity-0'}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 50 50"
-                className="w-10 h-10"
+                className={`size-10`}
               >
                 <path
                   fill="transparent"
                   d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                  className={`stroke-white stroke-3 transition-all duration-1000 ${isActive ? 'stroke-dashoffset-0' : 'stroke-dashoffset-[34px] stroke-dasharray-[34px]'}`}
+                  className={`stroke-white stroke-2 transition-all duration-1000 delay-1000 ${isActive ? 'activeButton' : ''}`}
                 />
               </svg>
             </div>
